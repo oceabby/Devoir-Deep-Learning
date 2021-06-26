@@ -1,0 +1,85 @@
+Le but ici est d'entrainner notre modèle afin qu'il soit capable de reconnaitre une pomme d'une orange par exemple.
+Dans ce notebook on va entrainer pas à pas un réseau de neurones convolutionnel pour faire de la reconnaissance d'objets dans des images.
+Pour cela nous alons, lui envoyer plusieurs image de plusieurs fruits différent afin qu'il analyse chaque image.
+
+
+Notre reseau de neuronne comportera:
+- des couches de convolutionnelle
+- des couches pooling
+- un Flatenn layer 
+- enfin un modele Dense (qui nous permettra de predire les fruits, et de lister quelques informations sur le fruit prédit)
+
+##IMPORTATION DE LA BIBLIOTHEQUE KERAS####
+
+from keras.layers import Dense
+
+from tensorflow.keras.layers import Dense
+
+##PREMIÈRE ETAPE:  Récupérer des données de fruit
+
+#Import dataset
+import pathlib
+import os
+data_dir = tf.keras.utils.get_file(
+    "https://https://www.kaggle.com/moltean/fruits?select=fruits-360?raw=true",
+    extract=False)
+
+data_dir = pathlib.Path('/content/datasets/dataset')
+print(data_dir)
+print(os.path.abspath(data_dir))
+
+##DEUXIÈME ETAPE:  Préprocessing
+
+#mettre toutes les images a la meme taille
+#envoyer plusieurs images en meme temps a notre reseau de neuronne
+batch_size = 3
+img_height = 200
+img_width = 200
+
+#chaque nom de repétoire sera égale a une classe pour notre reseau
+#nous utilisons ici le directory d'entrainement(training)
+train_data = tf.keras.preprocessing.image_dataset_from_directory(
+  data_dir,
+  validation_split=0.2,
+  subset="training",
+  seed=42,
+  img_size=(img_height, img_width),
+  batch_size=batch_size,
+  )
+  
+  
+##TROISIÈME ETAPE:  Validation
+
+#nous utilisons ici le directory de validation (test)
+val_data = tf.keras.preprocessing.image_dataset_from_directory(
+  data_dir,
+  validation_split=0.2,
+  subset="test",
+  seed=42,
+  image_size=(img_height, img_width),
+  batch_size=batch_size)
+  
+  
+##QUATRIÈME ETAPE:  Construction de notre reseau de neuronne 
+
+#ici les différente fonction de Kenras qu'il faut utiliser et paramettre pour définir notre reseau de neuronne convolutionnel
+import tensorflow
+from tensorflow import keras
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Activation, Dense, BatchNormalization, Conv2D
+from tensorflow.keras.optimizers import Adam
+from tensorflow.keras.metrics import categorical_crossentropy
+from tensorflow.keras.preprocessing.image import ImageDataGenerator
+
+
+##CINQUIÈME ETAPE:  Entrainement du reseau de neuronne
+
+model.fit( 
+    train_data,
+  validation_data=val_data,
+  epochs=28,
+  callbacks=[tensorboard_callback]
+)
+
+
+##SIXÈME ETAPE:  Validation
