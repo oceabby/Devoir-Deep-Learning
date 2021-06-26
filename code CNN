@@ -1,5 +1,5 @@
 Le but ici est d'entrainner notre modèle afin qu'il soit capable de reconnaitre une pomme d'une orange par exemple.
-Dans ce notebook on va entrainer pas à pas un réseau de neurones convolutionnel pour faire de la reconnaissance d'objets dans des images.
+Dans ce notebook on va entrainer pas à pas un réseau de neurones convolutionnel pour faire de la reconnaissance de fruits dans des images.
 Pour cela nous alons, lui envoyer plusieurs image de plusieurs fruits différent afin qu'il analyse chaque image.
 
 
@@ -60,7 +60,7 @@ val_data = tf.keras.preprocessing.image_dataset_from_directory(
   batch_size=batch_size)
   
   
-##QUATRIÈME ETAPE:  Construction de notre reseau de neuronne 
+##QUATRIÈME ETAPE:  Construction de notre reseau de neurone 
 
 #ici les différente fonction de Kenras qu'il faut utiliser et paramettre pour définir notre reseau de neuronne convolutionnel
 import tensorflow
@@ -72,7 +72,7 @@ from tensorflow.keras.metrics import categorical_crossentropy
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 
 
-##CINQUIÈME ETAPE:  Entrainement du reseau de neuronne
+##CINQUIÈME ETAPE:  Entrainement du reseau de neurone
 
 model.fit( 
     train_data,
